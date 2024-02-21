@@ -37,7 +37,7 @@
         // target就是传入的对象person,propName对应被读取的属性：如果name被读取,propName就是name,如果age被读取,那propName就是age
         console.log(`有人读取了p身上的${propName}属性`, target, propName)
         // return target.propName 这样不行,因为target.propName会把propName当做字符串,而不是变量哦,实际上propName是参数
-        // return target[propName] // 这个还是被Reflect取代
+        // return target[propName] // 这个可以,可以被Reflect取代
         return Reflect.get(target, propName)
       },
       // 有人修改p的某个属性、或给p追加某个属性时调用
