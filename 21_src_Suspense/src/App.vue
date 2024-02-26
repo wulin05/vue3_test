@@ -1,7 +1,7 @@
 <template>
   <div class="app">
     <h3>我是App组件</h3>
-    <!-- 从Suspense包裹的部分都是固定写死的,不要改 -->
+    <!-- ######## 从Suspense包裹的部分都是固定写死的,不要改 -->
     <Suspense>
       <template v-slot:default>
         <Child/>
@@ -16,7 +16,7 @@
 <script>
   // import Child from './components/Child'   // 静态引入
 
-  import {defineAsyncComponent} from 'vue'    // 导入defineAsyncComponent API
+  import {defineAsyncComponent} from 'vue'    // 导入API: defineAsyncComponent
   // const Child = defineAsyncComponent(() => {
   //   return import('./components/Child')
   // })

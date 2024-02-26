@@ -13,6 +13,9 @@
   <button @click="person.name += '~'">修改姓名</button>
   <button @click="person.age++">增长年龄</button>
   <button @click="person.job.j1.salary++">涨薪</button>
+
+  <!-- ##### 下面的button的为了说明ref和reactive分别定义的person,修改整个person时的区别 -->
+  <button @click="changePerson">修改整个person的值</button>
 </template>
 
 <script>
@@ -50,6 +53,14 @@ export default {
       }
     })
 
+    // 这是为了说明ref与reactive定义的数据,需要修改整个数据的时候,它们的原理不同,所以修改的方式不同。
+    function changePerson() {
+      // person是由reactive定义的话,需要用Object.assign()方式来修改: 没有改变地址值
+      Object.assign(person, { name: '李四', age: 99, job: { j1: { salary: 30 } } })
+      // 如果person是由ref定义的话：可以通过新的对象来赋值,并且能够保持响应式
+      // person.value = { name: '李四', age: 99, job: { j1: { salary: 30 } } }
+    }
+
     // 两个watch可以同时存在,当sum值变化的时候,控制台会有两个watch输出;msg只有第二个watch监测的到。
     // 情况一：监视ref所定义的一个响应式数据
     // watch(sum, (newValue, oldValue) => {
@@ -71,7 +82,7 @@ export default {
               那么如果要监视person的全部属性：
               方式一：通过查看person.value,可以得知person.value是由proxy包裹的,
                       也就说明person.value是由reactive定义的,所以默认是开启深度监视,
-                      方式一总结看：ref监视的话,用person.value; reactive,用person
+                      方式一总结看：ref监视的话,用person.value; reactive监视的话,用person
               watch(person.value, (newValue,oldValue)=>{
                 console.log('person的值变化了', newValue, oldValue)
               })
@@ -119,6 +130,7 @@ export default {
       watch,
       msg,
       person,
+      changePerson,
     }
   }
 

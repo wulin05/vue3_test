@@ -1,6 +1,7 @@
 <template>
     <div>
       <button @click="isShow = true">点我弹个窗</button>
+      <!-- ####### 本节重点内容 teleport -->
       <teleport to='body' >
         <div v-if="isShow" class="mask">
           <div class="dialog">
