@@ -46,7 +46,7 @@ export default {
       // age: person.age,     // 但,其实这样是不行的, 这是赋值操作： name: '张三', age: 18, salary: 20; 这样的话,name,age,salary跟person里的name,age,salary一点关系都没有
       // salary: person.job.j1.salary   //这里的name,age,salary是自己定义的,压根就不是person里对应的name、age、salary
         
-      // 由于不能使用上面的方式来实现,延伸出toRef的方法：toRef、toRefs其实是生成了新的ref对象,对象中的value属性引用了原数据(person)的属性(其实就是做了关联,这样就保持与原数据person双向同步)
+      // 由于不能使用上面的方式来实现,延伸出toRef的方法：toRef、toRefs其实是生成了新的ref对象,对象中的value属性引用了原数据(person)的属性(其实就是做了关联,保持与原数据person双向同步)
       name: toRef(person, 'name'),   // 下面的内容, 重点!重点!重点!
       age: toRef(person, 'age'),     // name: ref(person.name),这样虽然好像界面是响应式的,但是这只是将person.name的值使用ref包裹后赋值给name
       // salary: toRef(person.job.j1, 'salary')  // name和person.name其实是没有关系的,即、修改了name,原数据person.name不变。
